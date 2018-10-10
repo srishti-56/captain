@@ -1,0 +1,84 @@
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-social.css') }}">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5I<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">A7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<style>
+body{ background-image:url("{{ url_for('static', filename='notebook-pen-table-97076.jpg') }}"); background-position:center; background-size:cover; padding:10px;opacity: 0.8;}
+.login-container{
+    opacity: 1;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.login-form-2{
+    padding: 5%;
+    background: #1b1b1b;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+h3{
+    color: white;
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    font-size: 40px;
+}
+
+.login-container form{
+    padding: 10%;
+}
+
+.login-form-2 .ForgetPwd{
+    font-weight: 600;
+    text-decoration: none;
+    
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+    <div class="container login-container">
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 login-form-2">
+                <div class="loginhead"><h3>Captain</h3></div>
+                <form>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="form-group btn-group toggle " role="group">
+                         <button type="button" class="btn btn-primary" value="student" onclick="loginType()">Student</button>
+                        <button type="button" class="btn btn-light" value="teacher" onclick="loginType()">Teacher</button>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-block btn-social btn-lg btn-google">
+                            <i class="fa fa-google"></i>
+                            Sign in with Google
+                          </a>
+                    </div>
+
+                    <div class="form-group">
+                        <a href="#" class="ForgetPwd">New User? Sign up here</a>
+                    </div>
+                    <div class="form-group">
+
+                        <a href="#" class="ForgetPwd">Forgot Password?</a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</body>
+
