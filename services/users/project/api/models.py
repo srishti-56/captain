@@ -13,7 +13,8 @@ class Student(db.Model):
     semester = db.Column(db.Integer, nullable=False)
     section = db.Column(db.String(2), nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
-    
+    tokens = db.Column(db.Text)    
+
     def __init__(self, usn, name, email, branch, semester, section):
         self.usn = usn
         self.name = name

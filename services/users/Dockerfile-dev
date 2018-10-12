@@ -16,10 +16,11 @@ RUN pip install -r requirements.txt
 
 # add entrypoint.sh
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-RUN chmod +x /usr/src/app/entrypoint.sh
+RUN chmod 777 /usr/src/app/entrypoint.sh
+RUN dos2unix /usr/src/app/entrypoint.sh
 
 # add app
 COPY . /usr/src/app
 
 # run server
-CMD [“/bin/bash”, “/usr/src/app/entrypoint.sh”]
+CMD ["sh", "/usr/src/app/entrypoint.sh"]	
