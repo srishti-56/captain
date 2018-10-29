@@ -8,4 +8,4 @@ done
 
 echo "PostgreSQL started"
 
-python manage.py run
+python manage.py run --host 0.0.0.0

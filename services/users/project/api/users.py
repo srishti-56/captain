@@ -3,20 +3,26 @@
 
 from flask import Blueprint, jsonify, request, render_template
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
+from flask import redirect, url_for, session
 
 from requests_oauthlib import OAuth2Session
 from requests.exceptions import HTTPError
 
 from project.api.models import Student
 from sqlalchemy import exc
-from project import db
+from project import create_app, db
+from project import login_manager
 
-# NOTE: may need to placed in another file such as config.py??
-# Please delete above comment if resolved
+
+users_blueprint = Blueprint('users', __name__, template_folder='./templates')
+
+'''
+This class provides the necessary credentials for Google Auth (login) API key
+'''
 class Auth:
     CLIENT_ID = ('630861931474-mqa933274lsoctu9r94rb0j4tas2o6r6.apps.googleusercontent.com')
     CLIENT_SECRET = 'gUOr5-q89miUNIwEtTciEC2f'
-    REDIRECT_URI = 'http://localhost:5000/gCallback'
+    REDIRECT_URI = 'http://localhost:5001/gCallback'
     AUTH_URI = 'https://accounts.google.com/o/oauth2/auth'
     TOKEN_URI = 'https://www.googleapis.com/oauth2/v3/token'
     USER_INFO = 'https://www.googleapis.com/auth/userinfo.profile'
@@ -24,29 +30,26 @@ class Auth:
     #USER_INFO = 'https://www.googleapis.com/userinfo/v2/me'
 
 
-users_blueprint = Blueprint('users', __name__, template_folder='./templates')
-
 '''
 This function
 	creates OAuth session object, used by login functions below
 '''
-# @login_manager.user_loader
-# def get_google_auth(state=None, token=None):
-#     if token:
-#         return OAuth2Session(Auth.CLIENT_ID, token=token)
-#     if state:
-#         return OAuth2Session(
-#             Auth.CLIENT_ID,
-#             state=state,
-#             redirect_uri=Auth.REDIRECT_URI)
-#     oauth = OAuth2Session(
-#         Auth.CLIENT_ID,
-#         redirect_uri=Auth.REDIRECT_URI,
-#         scope=Auth.SCOPE)
-#     return oauth
+@login_manager.user_loader
+def get_google_auth(state=None, token=None):
+    if token:
+        return OAuth2Session(Auth.CLIENT_ID, token=token)
+    if state:
+        return OAuth2Session(
+            Auth.CLIENT_ID,
+            state=state,
+            redirect_uri=Auth.REDIRECT_URI)
+    oauth = OAuth2Session(
+        Auth.CLIENT_ID,
+        redirect_uri=Auth.REDIRECT_URI,
+        scope=Auth.SCOPE)
+    return oauth
 
 @users_blueprint.route('/', methods=['GET'])
-@login_required			# ensures login is required on homepage load and redirects to login page
 def index():
 	return render_template('index.html')
 
@@ -97,15 +100,21 @@ This function
 @users_blueprint.route('/gCallback')
 def callback():
     # Redirect user to home page if already logged in.
+    print("in gcallback!")
     if current_user is not None and current_user.is_authenticated:
+        print("is auth already")
         return redirect(url_for('index'))
     if 'error' in request.args:
+        print("some error")
         if request.args.get('error') == 'access_denied':
             return 'You denied access.'
         return 'Error encountered.'
     if 'code' not in request.args and 'state' not in request.args:
-        return redirect(url_for('login'))
+        print("missing?")
+        ##!! COMES HERE FOR SOME REASON????
+        return redirect(url_for('users.login'))
     else:
+        print("trying?")
         # Execution reaches here when user has
         # successfully authenticated our app.
         google = get_google_auth(state=session['oauth_state'])
