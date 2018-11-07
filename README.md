@@ -1,7 +1,11 @@
 # Captain
 A mini-project and lab monitoring system for students and teachers to facilitate mini-project tracking and grading, course content management, student-teacher communication and interactive quizzes
 
-## Run the app  
+## Run the app    
+Note: Try with sudo   
+Build for the first time:
+$ docker-compose -f docker-compose-dev.yml build    
+Run:
 $ docker-compose -f docker-compose-dev.yml up    
 Navigate to localhost:5001 to access 
 
