@@ -5,6 +5,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy #This is an ORM. 
 from flask_login import LoginManager
 
+from OpenSSL import SSL
+
 
 # instantiate the db object
 db = SQLAlchemy()
@@ -15,12 +17,18 @@ login_manager = LoginManager()
 
 def create_app(script_info=None):
 
+    # # set up SSL 
+    # context = SSL.Context(SSL.PROTOCOL_TLSv1_2)
+    # context.use_privatekey_file('server.key')
+    # context.use_certificate_file('server.crt')
+
+    context = ('server.crt', 'server.key')
     # instantiate the app
     app = Flask(__name__)
 
     # Set up Login
     app.secret_key = 'somethingsecret'
-    login_manager.login_view = "login"
+    login_manager.login_view = "users.login"
     login_manager.session_protection = "strong"
 
     login_manager.init_app(app)
@@ -32,7 +40,6 @@ def create_app(script_info=None):
     app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://postgres:postgres@users-db:5432/users"
     # set up extensions
     db.init_app(app)
-
 
     # register blueprints
     from project.api.users import users_blueprint

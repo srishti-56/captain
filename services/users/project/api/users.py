@@ -22,10 +22,11 @@ This class provides the necessary credentials for Google Auth (login) API key
 class Auth:
     CLIENT_ID = ('630861931474-mqa933274lsoctu9r94rb0j4tas2o6r6.apps.googleusercontent.com')
     CLIENT_SECRET = 'gUOr5-q89miUNIwEtTciEC2f'
-    REDIRECT_URI = 'http://localhost:5001/gCallback'
+    REDIRECT_URI = 'https://localhost:5001/gCallback'
     AUTH_URI = 'https://accounts.google.com/o/oauth2/auth'
     TOKEN_URI = 'https://www.googleapis.com/oauth2/v3/token'
-    USER_INFO = 'https://www.googleapis.com/auth/userinfo.profile'
+    USER_INFO = 'https://www.googleapis.com/plus/v1/people/me/openIdConnect'
+    # USER_INFO = 'https://www.googleapis.com/oauth2/v3/userinfo?alt=json'
     SCOPE = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
     #USER_INFO = 'https://www.googleapis.com/userinfo/v2/me'
 
@@ -84,13 +85,17 @@ This function
 '''
 @users_blueprint.route('/login')
 def login():
+    print("in login")
     if current_user.is_authenticated:
+        print("is authenticated!")
         return redirect(url_for('index'))
+    print("get auth")
     google = get_google_auth()
     auth_url, state = google.authorization_url(
         Auth.AUTH_URI, access_type='offline')
+    print(auth_url, state)
     session['oauth_state'] = state
-    return render_template('index.html', auth_url=auth_url)
+    return render_template('login.html', auth_url=auth_url)
 
 '''
 This function 
@@ -129,10 +134,13 @@ def callback():
         resp = google.get(Auth.USER_INFO)
         if resp.status_code == 200:
             user_data = resp.json()
+            print(user_data)
             email = user_data['email']
-            user = User.query.filter_by(email=email).first()
+            print(email)
+            user = Student.query.filter_by(email=email).first()
+            print(email)
             if user is None:
-                user = User()
+                user = Student()
                 user.email = email
             user.name = user_data['name']
             print(token)

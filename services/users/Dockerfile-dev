@@ -6,6 +6,9 @@ RUN apk update && \
     apk add --virtual build-deps gcc python-dev musl-dev && \
     apk add postgresql-dev && \
     apk add netcat-openbsd
+RUN apk --update add build-base libffi-dev libressl-dev python-dev py-pip
+RUN pip install cryptography
+RUN pip install pyopenssl==18.0.0
 
 # set working directory
 WORKDIR /usr/src/app
@@ -23,4 +26,4 @@ RUN dos2unix /usr/src/app/entrypoint.sh
 COPY . /usr/src/app
 
 # run server
-CMD ["/usr/src/app/entrypoint.sh"]	
+CMD ["sh", "/usr/src/app/entrypoint.sh"]	
