@@ -1,0 +1,547 @@
+Step 1/2 : FROM postgres:10.4-alpine
+ ---> 962ed899c609
+Step 2/2 : ADD create.sql /docker-entrypoint-initdb.d
+ ---> Using cache
+ ---> 71fa9153a4c5
+Successfully built 71fa9153a4c5
+Successfully tagged captain_users-db:latest
+Step 1/10 : FROM python:3.6.5-alpine
+ ---> 5be6d36f77ee
+Step 2/10 : RUN apk update &&     apk add --virtual build-deps gcc python-dev musl-dev &&     apk add postgresql-dev &&     apk add netcat-openbsd
+ ---> Using cache
+ ---> d8ae59eba849
+Step 3/10 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> 4ec540c86c25
+Step 4/10 : COPY ./requirements.txt /usr/src/app/requirements.txt
+ ---> Using cache
+ ---> 0aadf155c99e
+Step 5/10 : RUN pip install -r requirements.txt
+ ---> Running in 07512b168700
+Collecting Flask==1.0.2 (from -r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/7f/e7/08578774ed4536d3242b14dacb4696386634607af824ea997202cd0edb4b/Flask-1.0.2-py2.py3-none-any.whl (91kB)
+Collecting Flask-SQLAlchemy==2.3.2 (from -r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/a1/44/294fb7f6bf49cc7224417cd0637018db9fee0729b4fe166e43e2bbb1f1c8/Flask_SQLAlchemy-2.3.2-py2.py3-none-any.whl
+Collecting Flask-Testing==0.6.2 (from -r requirements.txt (line 3))
+  Downloading https://files.pythonhosted.org/packages/45/b6/4915dc083a4261309e4d7107a9af25712b2a045b94674c9be044ce5038c1/Flask-Testing-0.6.2.tar.gz (129kB)
+Collecting psycopg2==2.7.4 (from -r requirements.txt (line 4))
+  Downloading https://files.pythonhosted.org/packages/74/83/51580322ed0e82cba7ad8e0af590b8fb2cf11bd5aaa1ed872661bd36f462/psycopg2-2.7.4.tar.gz (425kB)
+Collecting Flask-Login==0.4.1 (from -r requirements.txt (line 5))
+  Downloading https://files.pythonhosted.org/packages/c1/ff/bd9a4d2d81bf0c07d9e53e8cd3d675c56553719bbefd372df69bf1b3c1e4/Flask-Login-0.4.1.tar.gz
+Collecting requests-oauthlib==1.0.0 (from -r requirements.txt (line 6))
+  Downloading https://files.pythonhosted.org/packages/94/e7/c250d122992e1561690d9c0f7856dadb79d61fd4bdd0e598087dce607f6c/requests_oauthlib-1.0.0-py2.py3-none-any.whl
+Collecting requests==2.12.4 (from -r requirements.txt (line 7))
+  Downloading https://files.pythonhosted.org/packages/ed/9e/60cc074968c095f728f0d8d28370e8d396fa60afb7582735563cccf223dd/requests-2.12.4-py2.py3-none-any.whl (576kB)
+Collecting pyOpenSSL==18.0.0 (from -r requirements.txt (line 8))
+  Downloading https://files.pythonhosted.org/packages/96/af/9d29e6bd40823061aea2e0574ccb2fcf72bfd6130ce53d32773ec375458c/pyOpenSSL-18.0.0-py2.py3-none-any.whl (53kB)
+Collecting Werkzeug>=0.14 (from Flask==1.0.2->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/20/c4/12e3e56473e52375aa29c4764e70d1b8f3efa6682bef8d0aae04fe335243/Werkzeug-0.14.1-py2.py3-none-any.whl (322kB)
+Collecting click>=5.1 (from Flask==1.0.2->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/fa/37/45185cb5abbc30d7257104c434fe0b07e5a195a6847506c074527aa599ec/Click-7.0-py2.py3-none-any.whl (81kB)
+Collecting itsdangerous>=0.24 (from Flask==1.0.2->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/76/ae/44b03b253d6fade317f32c24d100b3b35c2239807046a4c953c7b89fa49e/itsdangerous-1.1.0-py2.py3-none-any.whl
+Collecting Jinja2>=2.10 (from Flask==1.0.2->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/7f/ff/ae64bacdfc95f27a016a7bed8e8686763ba4d277a78ca76f32659220a731/Jinja2-2.10-py2.py3-none-any.whl (126kB)
+Collecting SQLAlchemy>=0.8.0 (from Flask-SQLAlchemy==2.3.2->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/1e/98/4dba86354d271344e25fa01dc38a0bf0e0ba6407ad2d5e8426496a95b568/SQLAlchemy-1.2.13.tar.gz (5.7MB)
+Collecting oauthlib>=0.6.2 (from requests-oauthlib==1.0.0->-r requirements.txt (line 6))
+  Downloading https://files.pythonhosted.org/packages/e6/d1/ddd9cfea3e736399b97ded5c2dd62d1322adef4a72d816f1ed1049d6a179/oauthlib-2.1.0-py2.py3-none-any.whl (121kB)
+Collecting six>=1.5.2 (from pyOpenSSL==18.0.0->-r requirements.txt (line 8))
+  Downloading https://files.pythonhosted.org/packages/67/4b/141a581104b1f6397bfa78ac9d43d8ad29a7ca43ea90a2d863fe3056e86a/six-1.11.0-py2.py3-none-any.whl
+Collecting cryptography>=2.2.1 (from pyOpenSSL==18.0.0->-r requirements.txt (line 8))
+  Downloading https://files.pythonhosted.org/packages/22/21/233e38f74188db94e8451ef6385754a98f3cad9b59bedf3a8e8b14988be4/cryptography-2.3.1.tar.gz (449kB)
+Collecting MarkupSafe>=0.23 (from Jinja2>=2.10->Flask==1.0.2->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/ac/7e/1b4c2e05809a4414ebce0892fe1e32c14ace86ca7d50c70f00979ca9b3a3/MarkupSafe-1.1.0.tar.gz
+Collecting idna>=2.1 (from cryptography>=2.2.1->pyOpenSSL==18.0.0->-r requirements.txt (line 8))
+  Downloading https://files.pythonhosted.org/packages/4b/2a/0276479a4b3caeb8a8c1af2f8e4355746a97fab05a372e4a2c6a6b876165/idna-2.7-py2.py3-none-any.whl (58kB)
+Collecting asn1crypto>=0.21.0 (from cryptography>=2.2.1->pyOpenSSL==18.0.0->-r requirements.txt (line 8))
+  Downloading https://files.pythonhosted.org/packages/ea/cd/35485615f45f30a510576f1a56d1e0a7ad7bd8ab5ed7cdc600ef7cd06222/asn1crypto-0.24.0-py2.py3-none-any.whl (101kB)
+Collecting cffi!=1.11.3,>=1.7 (from cryptography>=2.2.1->pyOpenSSL==18.0.0->-r requirements.txt (line 8))
+  Downloading https://files.pythonhosted.org/packages/e7/a7/4cd50e57cc6f436f1cc3a7e8fa700ff9b8b4d471620629074913e3735fb2/cffi-1.11.5.tar.gz (438kB)
+Collecting pycparser (from cffi!=1.11.3,>=1.7->cryptography>=2.2.1->pyOpenSSL==18.0.0->-r requirements.txt (line 8))
+  Downloading https://files.pythonhosted.org/packages/68/9e/49196946aee219aead1290e00d1e7fdeab8567783e83e1b9ab5585e6206a/pycparser-2.19.tar.gz (158kB)
+Building wheels for collected packages: Flask-Testing, psycopg2, Flask-Login, SQLAlchemy, cryptography, MarkupSafe, cffi, pycparser
+  Running setup.py bdist_wheel for Flask-Testing: started
+  Running setup.py bdist_wheel for Flask-Testing: finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/33/80/be/fb2a4c282447cad24e38f147046e741af9533587923c25a134
+  Running setup.py bdist_wheel for psycopg2: started
+  Running setup.py bdist_wheel for psycopg2: finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/43/ff/71/a0b0d6dbf71f912b95cf18101bca206b40eed5086d8fdb4ed9
+  Running setup.py bdist_wheel for Flask-Login: started
+  Running setup.py bdist_wheel for Flask-Login: finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/39/10/74/d68194e28d5f7a83de5f66e5b2deff5ccbb424fe45e6b0e927
+  Running setup.py bdist_wheel for SQLAlchemy: started
+  Running setup.py bdist_wheel for SQLAlchemy: finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/ba/2e/47/b194b03e6aeaa658f521dfba094a42f1d37f4ee4018b9e607e
+  Running setup.py bdist_wheel for cryptography: started
+  Running setup.py bdist_wheel for cryptography: finished with status 'error'
+  Complete output from command /usr/local/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-install-8ad4kw45/cryptography/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" bdist_wheel -d /tmp/pip-wheel-uc2v7pcf --python-tag cp36:
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  c/_cffi_backend.c:15:17: fatal error: ffi.h: No such file or directory
+   #include <ffi.h>
+                   ^
+  compilation terminated.
+  Traceback (most recent call last):
+    File "/usr/local/lib/python3.6/distutils/unixccompiler.py", line 118, in _compile
+      extra_postargs)
+    File "/usr/local/lib/python3.6/distutils/ccompiler.py", line 909, in spawn
+      spawn(cmd, dry_run=self.dry_run)
+    File "/usr/local/lib/python3.6/distutils/spawn.py", line 36, in spawn
+      _spawn_posix(cmd, search_path, dry_run=dry_run)
+    File "/usr/local/lib/python3.6/distutils/spawn.py", line 159, in _spawn_posix
+      % (cmd, exit_status))
+  distutils.errors.DistutilsExecError: command 'gcc' failed with exit status 1
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "/usr/local/lib/python3.6/distutils/core.py", line 148, in setup
+      dist.run_commands()
+    File "/usr/local/lib/python3.6/distutils/dist.py", line 955, in run_commands
+      self.run_command(cmd)
+    File "/usr/local/lib/python3.6/distutils/dist.py", line 974, in run_command
+      cmd_obj.run()
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/bdist_egg.py", line 172, in run
+      cmd = self.call_command('install_lib', warn_dir=0)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/bdist_egg.py", line 158, in call_command
+      self.run_command(cmdname)
+    File "/usr/local/lib/python3.6/distutils/cmd.py", line 313, in run_command
+      self.distribution.run_command(command)
+    File "/usr/local/lib/python3.6/distutils/dist.py", line 974, in run_command
+      cmd_obj.run()
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/install_lib.py", line 11, in run
+      self.build()
+    File "/usr/local/lib/python3.6/distutils/command/install_lib.py", line 107, in build
+      self.run_command('build_ext')
+    File "/usr/local/lib/python3.6/distutils/cmd.py", line 313, in run_command
+      self.distribution.run_command(command)
+    File "/usr/local/lib/python3.6/distutils/dist.py", line 974, in run_command
+      cmd_obj.run()
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/build_ext.py", line 78, in run
+      _build_ext.run(self)
+    File "/usr/local/lib/python3.6/distutils/command/build_ext.py", line 339, in run
+      self.build_extensions()
+    File "/usr/local/lib/python3.6/distutils/command/build_ext.py", line 448, in build_extensions
+      self._build_extensions_serial()
+    File "/usr/local/lib/python3.6/distutils/command/build_ext.py", line 473, in _build_extensions_serial
+      self.build_extension(ext)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/build_ext.py", line 199, in build_extension
+      _build_ext.build_extension(self, ext)
+    File "/usr/local/lib/python3.6/distutils/command/build_ext.py", line 533, in build_extension
+      depends=ext.depends)
+    File "/usr/local/lib/python3.6/distutils/ccompiler.py", line 574, in compile
+      self._compile(obj, src, ext, cc_args, extra_postargs, pp_opts)
+    File "/usr/local/lib/python3.6/distutils/unixccompiler.py", line 120, in _compile
+      raise CompileError(msg)
+  distutils.errors.CompileError: command 'gcc' failed with exit status 1
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 154, in save_modules
+      yield saved
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 195, in setup_context
+      yield
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 250, in run_setup
+      _execfile(setup_script, ns)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 45, in _execfile
+      exec(code, globals, locals)
+    File "/tmp/easy_install-_2hylhxd/cffi-1.11.5/setup.py", line 240, in <module>
+  
+    File "/usr/local/lib/python3.6/site-packages/setuptools/__init__.py", line 129, in setup
+      return distutils.core.setup(**attrs)
+    File "/usr/local/lib/python3.6/distutils/core.py", line 163, in setup
+      raise SystemExit("error: " + str(msg))
+  SystemExit: error: command 'gcc' failed with exit status 1
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 1138, in run_setup
+      run_setup(setup_script, args)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 253, in run_setup
+      raise
+    File "/usr/local/lib/python3.6/contextlib.py", line 99, in __exit__
+      self.gen.throw(type, value, traceback)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 195, in setup_context
+      yield
+    File "/usr/local/lib/python3.6/contextlib.py", line 99, in __exit__
+      self.gen.throw(type, value, traceback)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 166, in save_modules
+      saved_exc.resume()
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 141, in resume
+      six.reraise(type, exc, self._tb)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/_vendor/six.py", line 685, in reraise
+      raise value.with_traceback(tb)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 154, in save_modules
+      yield saved
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 195, in setup_context
+      yield
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 250, in run_setup
+      _execfile(setup_script, ns)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 45, in _execfile
+      exec(code, globals, locals)
+    File "/tmp/easy_install-_2hylhxd/cffi-1.11.5/setup.py", line 240, in <module>
+  
+    File "/usr/local/lib/python3.6/site-packages/setuptools/__init__.py", line 129, in setup
+      return distutils.core.setup(**attrs)
+    File "/usr/local/lib/python3.6/distutils/core.py", line 163, in setup
+      raise SystemExit("error: " + str(msg))
+  SystemExit: error: command 'gcc' failed with exit status 1
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "<string>", line 1, in <module>
+    File "/tmp/pip-install-8ad4kw45/cryptography/setup.py", line 318, in <module>
+      **keywords_with_side_effects(sys.argv)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/__init__.py", line 128, in setup
+      _install_setup_requires(attrs)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/__init__.py", line 123, in _install_setup_requires
+      dist.fetch_build_eggs(dist.setup_requires)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/dist.py", line 514, in fetch_build_eggs
+      replace_conflicting=True,
+    File "/usr/local/lib/python3.6/site-packages/pkg_resources/__init__.py", line 770, in resolve
+      replace_conflicting=replace_conflicting
+    File "/usr/local/lib/python3.6/site-packages/pkg_resources/__init__.py", line 1053, in best_match
+      return self.obtain(req, installer)
+    File "/usr/local/lib/python3.6/site-packages/pkg_resources/__init__.py", line 1065, in obtain
+      return installer(requirement)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/dist.py", line 581, in fetch_build_egg
+      return cmd.easy_install(req)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 673, in easy_install
+      return self.install_item(spec, dist.location, tmpdir, deps)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 699, in install_item
+      dists = self.install_eggs(spec, download, tmpdir)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 884, in install_eggs
+      return self.build_and_install(setup_script, setup_base)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 1152, in build_and_install
+      self.run_setup(setup_script, setup_base, args)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 1140, in run_setup
+      raise DistutilsError("Setup script exited with %s" % (v.args[0],))
+  distutils.errors.DistutilsError: Setup script exited with error: command 'gcc' failed with exit status 1
+  
+  ----------------------------------------
+[91m  Failed building wheel for cryptography
+[0m  Running setup.py clean for cryptography
+  Complete output from command /usr/local/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-install-8ad4kw45/cryptography/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" clean --all:
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  c/_cffi_backend.c:15:17: fatal error: ffi.h: No such file or directory
+   #include <ffi.h>
+                   ^
+  compilation terminated.
+  Traceback (most recent call last):
+    File "/usr/local/lib/python3.6/distutils/unixccompiler.py", line 118, in _compile
+      extra_postargs)
+    File "/usr/local/lib/python3.6/distutils/ccompiler.py", line 909, in spawn
+      spawn(cmd, dry_run=self.dry_run)
+    File "/usr/local/lib/python3.6/distutils/spawn.py", line 36, in spawn
+      _spawn_posix(cmd, search_path, dry_run=dry_run)
+    File "/usr/local/lib/python3.6/distutils/spawn.py", line 159, in _spawn_posix
+      % (cmd, exit_status))
+  distutils.errors.DistutilsExecError: command 'gcc' failed with exit status 1
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "/usr/local/lib/python3.6/distutils/core.py", line 148, in setup
+      dist.run_commands()
+    File "/usr/local/lib/python3.6/distutils/dist.py", line 955, in run_commands
+      self.run_command(cmd)
+    File "/usr/local/lib/python3.6/distutils/dist.py", line 974, in run_command
+      cmd_obj.run()
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/bdist_egg.py", line 172, in run
+      cmd = self.call_command('install_lib', warn_dir=0)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/bdist_egg.py", line 158, in call_command
+      self.run_command(cmdname)
+    File "/usr/local/lib/python3.6/distutils/cmd.py", line 313, in run_command
+      self.distribution.run_command(command)
+    File "/usr/local/lib/python3.6/distutils/dist.py", line 974, in run_command
+      cmd_obj.run()
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/install_lib.py", line 11, in run
+      self.build()
+    File "/usr/local/lib/python3.6/distutils/command/install_lib.py", line 107, in build
+      self.run_command('build_ext')
+    File "/usr/local/lib/python3.6/distutils/cmd.py", line 313, in run_command
+      self.distribution.run_command(command)
+    File "/usr/local/lib/python3.6/distutils/dist.py", line 974, in run_command
+      cmd_obj.run()
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/build_ext.py", line 78, in run
+      _build_ext.run(self)
+    File "/usr/local/lib/python3.6/distutils/command/build_ext.py", line 339, in run
+      self.build_extensions()
+    File "/usr/local/lib/python3.6/distutils/command/build_ext.py", line 448, in build_extensions
+      self._build_extensions_serial()
+    File "/usr/local/lib/python3.6/distutils/command/build_ext.py", line 473, in _build_extensions_serial
+      self.build_extension(ext)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/build_ext.py", line 199, in build_extension
+      _build_ext.build_extension(self, ext)
+    File "/usr/local/lib/python3.6/distutils/command/build_ext.py", line 533, in build_extension
+      depends=ext.depends)
+    File "/usr/local/lib/python3.6/distutils/ccompiler.py", line 574, in compile
+      self._compile(obj, src, ext, cc_args, extra_postargs, pp_opts)
+    File "/usr/local/lib/python3.6/distutils/unixccompiler.py", line 120, in _compile
+      raise CompileError(msg)
+  distutils.errors.CompileError: command 'gcc' failed with exit status 1
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 154, in save_modules
+      yield saved
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 195, in setup_context
+      yield
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 250, in run_setup
+      _execfile(setup_script, ns)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 45, in _execfile
+      exec(code, globals, locals)
+    File "/tmp/easy_install-32nbeilp/cffi-1.11.5/setup.py", line 240, in <module>
+  
+    File "/usr/local/lib/python3.6/site-packages/setuptools/__init__.py", line 129, in setup
+      return distutils.core.setup(**attrs)
+    File "/usr/local/lib/python3.6/distutils/core.py", line 163, in setup
+      raise SystemExit("error: " + str(msg))
+  SystemExit: error: command 'gcc' failed with exit status 1
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 1138, in run_setup
+      run_setup(setup_script, args)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 253, in run_setup
+      raise
+    File "/usr/local/lib/python3.6/contextlib.py", line 99, in __exit__
+      self.gen.throw(type, value, traceback)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 195, in setup_context
+      yield
+    File "/usr/local/lib/python3.6/contextlib.py", line 99, in __exit__
+      self.gen.throw(type, value, traceback)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 166, in save_modules
+      saved_exc.resume()
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 141, in resume
+      six.reraise(type, exc, self._tb)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/_vendor/six.py", line 685, in reraise
+      raise value.with_traceback(tb)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 154, in save_modules
+      yield saved
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 195, in setup_context
+      yield
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 250, in run_setup
+      _execfile(setup_script, ns)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/sandbox.py", line 45, in _execfile
+      exec(code, globals, locals)
+    File "/tmp/easy_install-32nbeilp/cffi-1.11.5/setup.py", line 240, in <module>
+  
+    File "/usr/local/lib/python3.6/site-packages/setuptools/__init__.py", line 129, in setup
+      return distutils.core.setup(**attrs)
+    File "/usr/local/lib/python3.6/distutils/core.py", line 163, in setup
+      raise SystemExit("error: " + str(msg))
+  SystemExit: error: command 'gcc' failed with exit status 1
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "<string>", line 1, in <module>
+    File "/tmp/pip-install-8ad4kw45/cryptography/setup.py", line 318, in <module>
+      **keywords_with_side_effects(sys.argv)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/__init__.py", line 128, in setup
+      _install_setup_requires(attrs)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/__init__.py", line 123, in _install_setup_requires
+      dist.fetch_build_eggs(dist.setup_requires)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/dist.py", line 514, in fetch_build_eggs
+      replace_conflicting=True,
+    File "/usr/local/lib/python3.6/site-packages/pkg_resources/__init__.py", line 770, in resolve
+      replace_conflicting=replace_conflicting
+    File "/usr/local/lib/python3.6/site-packages/pkg_resources/__init__.py", line 1053, in best_match
+      return self.obtain(req, installer)
+    File "/usr/local/lib/python3.6/site-packages/pkg_resources/__init__.py", line 1065, in obtain
+      return installer(requirement)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/dist.py", line 581, in fetch_build_egg
+      return cmd.easy_install(req)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 673, in easy_install
+      return self.install_item(spec, dist.location, tmpdir, deps)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 699, in install_item
+      dists = self.install_eggs(spec, download, tmpdir)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 884, in install_eggs
+      return self.build_and_install(setup_script, setup_base)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 1152, in build_and_install
+      self.run_setup(setup_script, setup_base, args)
+    File "/usr/local/lib/python3.6/site-packages/setuptools/command/easy_install.py", line 1140, in run_setup
+      raise DistutilsError("Setup script exited with %s" % (v.args[0],))
+  distutils.errors.DistutilsError: Setup script exited with error: command 'gcc' failed with exit status 1
+  
+  ----------------------------------------
+[91m  Failed cleaning build dir for cryptography
+[0m  Running setup.py bdist_wheel for MarkupSafe: started
+  Running setup.py bdist_wheel for MarkupSafe: finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/81/23/64/51895ea52825dc116a55f37043f49be0939bcf603de54e5cde
+  Running setup.py bdist_wheel for cffi: started
+  Running setup.py bdist_wheel for cffi: finished with status 'error'
+  Complete output from command /usr/local/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-install-8ad4kw45/cffi/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" bdist_wheel -d /tmp/pip-wheel-c27qh2k0 --python-tag cp36:
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  Package libffi was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `libffi.pc'
+  to the PKG_CONFIG_PATH environment variable
+  Package 'libffi', required by 'virtual:world', not found
+  running bdist_wheel
+  running build
+  running build_py
+  creating build
+  creating build/lib.linux-x86_64-3.6
+  creating build/lib.linux-x86_64-3.6/cffi
+  copying cffi/backend_ctypes.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/lock.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/verifier.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/cparser.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/error.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/commontypes.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/setuptools_ext.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/vengine_cpy.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/api.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/recompiler.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/cffi_opcode.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/ffiplatform.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/model.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/vengine_gen.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/__init__.py -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/_cffi_include.h -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/parse_c_type.h -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/_embedding.h -> build/lib.linux-x86_64-3.6/cffi
+  copying cffi/_cffi_errors.h -> build/lib.linux-x86_64-3.6/cffi
+  running build_ext
+  building '_cffi_backend' extension
+  creating build/temp.linux-x86_64-3.6
+  creating build/temp.linux-x86_64-3.6/c
+  gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -DTHREAD_STACK_SIZE=0x100000 -fPIC -DUSE__THREAD -DHAVE_SYNC_SYNCHRONIZE -I/usr/include/ffi -I/usr/include/libffi -I/usr/local/include/python3.6m -c c/_cffi_backend.c -o build/temp.linux-x86_64-3.6/c/_cffi_backend.o
+  c/_cffi_backend.c:15:17: fatal error: ffi.h: No such file or directory
+   #include <ffi.h>
+                   ^
+  compilation terminated.
+  error: command 'gcc' failed with exit status 1
+  
+  ----------------------------------------
+[91m  Failed building wheel for cffi
+[0m  Running setup.py clean for cffi
+  Running setup.py bdist_wheel for pycparser: started
+  Running setup.py bdist_wheel for pycparser: finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/f2/9a/90/de94f8556265ddc9d9c8b271b0f63e57b26fb1d67a45564511
+Successfully built Flask-Testing psycopg2 Flask-Login SQLAlchemy MarkupSafe pycparser
+Failed to build cryptography cffi
+Installing collected packages: Werkzeug, click, itsdangerous, MarkupSafe, Jinja2, Flask, SQLAlchemy, Flask-SQLAlchemy, Flask-Testing, psycopg2, Flask-Login, requests, oauthlib, requests-oauthlib, six, idna, asn1crypto, pycparser, cffi, cryptography, pyOpenSSL
+  Running setup.py install for cffi: started
+    Running setup.py install for cffi: finished with status 'error'
+    Complete output from command /usr/local/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-install-8ad4kw45/cffi/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" install --record /tmp/pip-record-of9dp4dn/install-record.txt --single-version-externally-managed --compile:
+    Package libffi was not found in the pkg-config search path.
+    Perhaps you should add the directory containing `libffi.pc'
+    to the PKG_CONFIG_PATH environment variable
+    Package 'libffi', required by 'virtual:world', not found
+    Package libffi was not found in the pkg-config search path.
+    Perhaps you should add the directory containing `libffi.pc'
+    to the PKG_CONFIG_PATH environment variable
+    Package 'libffi', required by 'virtual:world', not found
+    Package libffi was not found in the pkg-config search path.
+    Perhaps you should add the directory containing `libffi.pc'
+    to the PKG_CONFIG_PATH environment variable
+    Package 'libffi', required by 'virtual:world', not found
+    Package libffi was not found in the pkg-config search path.
+    Perhaps you should add the directory containing `libffi.pc'
+    to the PKG_CONFIG_PATH environment variable
+    Package 'libffi', required by 'virtual:world', not found
+    Package libffi was not found in the pkg-config search path.
+    Perhaps you should add the directory containing `libffi.pc'
+    to the PKG_CONFIG_PATH environment variable
+    Package 'libffi', required by 'virtual:world', not found
+    running install
+    running build
+    running build_py
+    creating build
+    creating build/lib.linux-x86_64-3.6
+    creating build/lib.linux-x86_64-3.6/cffi
+    copying cffi/backend_ctypes.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/lock.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/verifier.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/cparser.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/error.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/commontypes.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/setuptools_ext.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/vengine_cpy.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/api.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/recompiler.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/cffi_opcode.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/ffiplatform.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/model.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/vengine_gen.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/__init__.py -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/_cffi_include.h -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/parse_c_type.h -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/_embedding.h -> build/lib.linux-x86_64-3.6/cffi
+    copying cffi/_cffi_errors.h -> build/lib.linux-x86_64-3.6/cffi
+    running build_ext
+    building '_cffi_backend' extension
+    creating build/temp.linux-x86_64-3.6
+    creating build/temp.linux-x86_64-3.6/c
+    gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -DTHREAD_STACK_SIZE=0x100000 -fPIC -DUSE__THREAD -DHAVE_SYNC_SYNCHRONIZE -I/usr/include/ffi -I/usr/include/libffi -I/usr/local/include/python3.6m -c c/_cffi_backend.c -o build/temp.linux-x86_64-3.6/c/_cffi_backend.o
+    c/_cffi_backend.c:15:17: fatal error: ffi.h: No such file or directory
+     #include <ffi.h>
+                     ^
+    compilation terminated.
+    error: command 'gcc' failed with exit status 1
+    
+    ----------------------------------------
+[91mCommand "/usr/local/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-install-8ad4kw45/cffi/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" install --record /tmp/pip-record-of9dp4dn/install-record.txt --single-version-externally-managed --compile" failed with error code 1 in /tmp/pip-install-8ad4kw45/cffi/
+[0m[91mYou are using pip version 10.0.1, however version 18.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+[0m
