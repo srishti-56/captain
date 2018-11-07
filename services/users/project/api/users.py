@@ -1,5 +1,6 @@
 # services/users/project/api/users.py
 
+import simplejson as json
 
 from flask import Blueprint, jsonify, request, render_template
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
@@ -140,8 +141,15 @@ def callback():
             user = Student.query.filter_by(email=email).first()
             print(email)
             if user is None:
-                user = Student()
-                user.email = email
+                print("New user! need Details?")
+                try:
+                    user = Student()
+                    user.email = email
+                except:
+                    print("Error creating new user, init requires 'usn', 'name', 'email', 'branch', 'semester', and 'section' data")
+                    return "Error creating new user, init requires 'usn', 'name', 'email', 'branch', 'semester', and 'section' data"                    
+                    #return redirect(url_for('users.signup'))
+            # try:
             user.name = user_data['name']
             print(token)
             user.tokens = json.dumps(token)
@@ -149,5 +157,9 @@ def callback():
             db.session.add(user)
             db.session.commit()
             login_user(user)
+            # except: 
+            #     print("Error adding user details and logging in")
+            #     return 'Error adding user details and logging in'
+            
             return redirect(url_for('index'))
         return 'Could not fetch your information.'
