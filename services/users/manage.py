@@ -31,9 +31,10 @@ def test():
 @cli.command()
 def seed_db():
     """Seeds the database."""
-    db.session.add(User(usn="001", name="abc", email="abc@abc.com", branch="CSE", semester=7, section="A"))
-    db.session.add(User(usn="002", name="def", email="def@def.com", branch="CSE", semester=7, section="B"))
-    db.session.add(User(usn="003", name="xyz", email="xyz@xyz.com", branch="CSE", semester=7, section="C"))
+    db.session.add(Student(usn="001", name="abc", email="abc@abc.com", branch="CSE", semester=7, section="A"))
+    db.session.add(Student(usn="002", name="def", email="def@def.com", branch="CSE", semester=7, section="B"))
+    db.session.add(Student(usn="003", name="xyz", email="xyz@xyz.com", branch="CSE", semester=7, section="C"))
+    db.session.add(Student(usn="310", name="Srishti", email="srishtimishra56@gmail.com", branch="CSE", semester=7, section="F"))
     db.session.commit()
 
 if __name__ == '__main__':
