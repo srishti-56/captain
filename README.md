@@ -3,7 +3,7 @@ A mini-project and lab monitoring system for students and teachers to facilitate
 
 ## Run the app    
 Note: Try with sudo   
-Build for the first time:
+Build for the first time:    
 $ docker-compose -f docker-compose-dev.yml build    
 Run:
 $ docker-compose -f docker-compose-dev.yml up    
