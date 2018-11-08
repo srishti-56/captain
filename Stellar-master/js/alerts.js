@@ -1,5 +1,5 @@
 (function($) {
-  showSwal = function(type){
+  showSwal = function(type,iden){
         'use strict';
         if(type === 'basic'){
         	swal({
@@ -11,18 +11,6 @@
               className: "btn btn-primary"
             }
           })
-
-    	}else if(type === 'title-and-text'){
-        swal({
-          title: 'Read the alert!',
-          text: 'Click OK to close this alert',
-          button: {
-            text: "OK",
-            value: true,
-            visible: true,
-            className: "btn btn-primary"
-          }
-        })
 
     	}else if(type === 'success-message'){
         swal({
@@ -37,21 +25,6 @@
           }
         })
 
-    	}else if(type === 'auto-close'){
-            swal({
-              title: 'Auto close alert!',
-              text: 'I will close in 2 seconds.',
-              timer: 2000,
-              button: false
-            }).then(
-            function () {},
-              // handling the promise rejection
-            function (dismiss) {
-              if (dismiss === 'timer') {
-                console.log('I was closed by the timer')
-              }
-            }
-          )
     	}else if(type === 'warning-message-and-cancel'){
             swal({
               title: 'Are you sure?',
@@ -75,28 +48,30 @@
                   visible: true,
                   className: "btn btn-primary",
                   closeModal: true
+                  
                 }
               }
             })
+            .then((value) => {
+              if(value == true)
+              {
+                swal( {title: 'Congratulations!',
+                text: 'Sent to the teacher for approval :)',
+                icon: 'success'});
+                
+              }
 
-    	}else if(type === 'custom-html'){
-        	swal({
-            content: {
-              element: "input",
-              attributes: {
-                placeholder: "Type your password",
-                type: "password",
-                class: 'form-control'
-              },
-            },
-            button: {
-              text: "OK",
-              value: true,
-              visible: true,
-              className: "btn btn-primary"
-            }
-          })
+              
+              
+
+            })
+            $(iden).remove();
+           
+
+
     	}
         }
+      
 
-})(jQuery);
+})
+(jQuery);

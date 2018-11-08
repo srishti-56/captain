@@ -1,17 +1,17 @@
 (function($) {
     'use strict';
     var iconTochange;
-    dragula([document.getElementById("dragula-left"), document.getElementById("dragula-right")]);
-    dragula([document.getElementById("profile-list-left"), document.getElementById("profile-list-right")]);
-    dragula([document.getElementById("dragula-event-left"), document.getElementById("dragula-event-right")])
-        .on('drop', function(el) {
-            console.log($(el));
-            iconTochange = $(el).find('.mdi');
-            if (iconTochange.hasClass('mdi-check')) {
-                iconTochange.removeClass('mdi-check text-primary').addClass('mdi-check-all text-success');
-            }
-            else if (iconTochange.hasClass('mdi-check-all')) {
-                iconTochange.removeClass('mdi-check-all text-success').addClass('mdi-check text-primary');
-            }
-        })
+   
+    dragula([document.getElementById("profile-list-all1"), document.getElementById("profile-list-subj1"),document.getElementById("profile-list-subj2"),document.getElementById("profile-list-subj3")], {
+        copy: function (el, source) {
+          return source === document.getElementById("profile-list-all1")
+        },
+        removeOnSpill: true,
+        accepts: function (el, target) {
+          return target !== document.getElementById("profile-list-all1")
+        }
+      });
+  
+
 })(jQuery);
+
