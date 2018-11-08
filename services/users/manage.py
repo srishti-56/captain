@@ -5,7 +5,7 @@ import unittest
 from flask.cli import FlaskGroup
 
 from project import create_app, db   
-from project.api.models import Student  
+from project.api.models import Student,Teacher
 
 app = create_app()
 
@@ -35,6 +35,7 @@ def seed_db():
     db.session.add(Student(usn="002", name="def", email="def@def.com", branch="CSE", semester=7, section="B"))
     db.session.add(Student(usn="003", name="xyz", email="xyz@xyz.com", branch="CSE", semester=7, section="C"))
     db.session.add(Student(usn="310", name="Srishti", email="srishtimishra56@gmail.com", branch="CSE", semester=7, section="F"))
+    db.session.add(Teacher(f_id="001", name="Priya", email="priya@abc.com", branch="CSE", position="Professor"))
     db.session.commit()
 
 if __name__ == '__main__':

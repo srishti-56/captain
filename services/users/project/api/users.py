@@ -103,6 +103,13 @@ This function
 	Performs Google login to check if user is logged in 
 	else authenticate user and login
 '''
+
+@users_blueprint.route('/profile')
+def profile():
+    print("Display profile")
+    return render_template('student_profile.html')
+
+
 @users_blueprint.route('/gCallback')
 def callback():
     # Redirect user to home page if already logged in.
@@ -161,5 +168,5 @@ def callback():
             #     print("Error adding user details and logging in")
             #     return 'Error adding user details and logging in'
             
-            return redirect(url_for('index'))
+            return redirect(url_for('users.profile'))
         return 'Could not fetch your information.'
