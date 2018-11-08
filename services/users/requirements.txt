@@ -5,3 +5,4 @@ psycopg2==2.7.4
 Flask-Login==0.4.1
 requests-oauthlib==1.0.0
 requests==2.12.4
+simplejson==3.16.0
