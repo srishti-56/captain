@@ -17,6 +17,8 @@
   <!-- plugin css for this page -->
   <link rel="stylesheet" href="node_modules/chartist/dist/chartist.min.css" />
   <link rel="stylesheet" href="node_modules/jvectormap/jquery-jvectormap.css" />
+  <link rel="stylesheet" href="node_modules/dropify/dist/css/dropify.min.css">
+  <link rel="stylesheet" href="node_modules/jquery-file-upload/css/uploadfile.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
@@ -206,49 +208,338 @@
         </nav>
         <!-- partial -->
         <div class= "content-wrapper">
-
-            <div class="card-columns">
+        <div class="row">
+        <div class="col-lg-12">
+          <div class = "card">
+              <div class="card-body">
+              <h1 class="display-4">Course 1</h1>
+              </div>
+          </div>
+           
+        </div>
+          
+        </div>
+        <div class = "row"> 
+            <div class="col-lg-12">
                 <div class="card">
-                    <img class="card-img-top" src="images/samples/300x300/3.jpg" alt="Card image cap">
-                  <div class="card-body">
-                    <h4 class="card-title mb-0">About this Course </h4>
-                
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="d-inline-block pt-3">
-                        <div class="d-flex">
-                          <div class="d-flex align-items-center ml-2">
-                            <i class="mdi mdi-clock text-muted"></i>
-                            <small class=" ml-1 mb-0">Updated: 9:10am</small>
-                          </div>
-                        </div>
-                        <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam volutpat quam est, non mollis massa commodo quis. Nullam pharetra, metus sit amet dictum molestie, ipsum ante consectetur nulla, quis fermentum tellus nulla tristique erat. Phasellus cursus mauris at erat efficitur, quis molestie mauris iaculis. Curabitur et malesuada massa. Aliquam quis pretium ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis consequat dui. Duis risus purus, egestas vel aliquet ac, porta fringilla nibh. Nam ut nibh vehicula dui rutrum interdum. Duis tincidunt suscipit lectus ut fringilla. Donec non nisi vel orci molestie luctus quis venenatis justo. Suspendisse fermentum, orci in efficitur rhoncus, turpis eros imperdiet magna, in tempus lectus urna id dolor. Morbi commodo suscipit leo in fringilla.</p>
-                      </div>
-
-                    </div>
-                  </div>
+                    <ul class="nav nav-tabs tab-basic" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Course Information</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="submission-tab" data-toggle="tab" href="#submission" role="tab" aria-controls="submission" aria-selected="false">My Submissions</a>
+                    </li>
+                  </ul>
                 </div>
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title mb-0">About this Course </h4>
-                
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="d-inline-block pt-3">
-                        <div class="d-flex">
-                          <div class="d-flex align-items-center ml-2">
-                            <i class="mdi mdi-clock text-muted"></i>
-                            <small class=" ml-1 mb-0">Updated: 9:10am</small>
+            </div>
+        </div>
+        <div class="tab-content tab-content-basic">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row">
+                    <div class="col-lg-12">
+                      <div class="card">
+                        <img class="card-img-top" src="images/samples/1280x768/3.jpg" height = 300 alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title mb-0">About this Course </h4>
+                    
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="d-inline-block pt-3">
+                            <div class="d-flex">
+                              
+                            </div>
+                            <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam volutpat quam est, non mollis massa commodo quis. Nullam pharetra, metus sit amet dictum molestie, ipsum ante consectetur nulla, quis fermentum tellus nulla tristique erat. Phasellus cursus mauris at erat efficitur, quis molestie mauris iaculis. Curabitur et malesuada massa. Aliquam quis pretium ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis consequat dui. Duis risus purus, egestas vel aliquet ac, porta fringilla nibh. Nam ut nibh vehicula dui rutrum interdum. Duis tincidunt suscipit lectus ut fringilla. Donec non nisi vel orci molestie luctus quis venenatis justo. Suspendisse fermentum, orci in efficitur rhoncus, turpis eros imperdiet magna, in tempus lectus urna id dolor. Morbi commodo suscipit leo in fringilla.</p>
+                          </div>
+          
+                        </div>
+                      </div>
+                    </div> 
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="card">
+                        <div class="card-body">
+                          <h4 class="card-title d-block h4 mb-0">Resources </h4>
+                      
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-inline-block pt-3">
+                              <div class="d-flex">
+                                <div class="d-flex align-items-center ml-2">
+                                  <i class="mdi mdi-clock text-muted"></i>
+                                  <small class=" ml-1 mb-0">Updated: 9:10am</small>
+                                </div>
+                              </div>
+                              <div class="col-12 results">
+                                  <div class="pt-4 border-bottom">
+                                    <span class="d-block h4 mb-0" href="#">Resource Title</span>
+                                    <a class="page-url text-primary" href="#">resource url</a>
+                                    <p class="page-description mt-1 w-75 text-muted">Resource description</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 results">
+                                    <div class="pt-4 border-bottom">
+                                      <span class="d-block h4 mb-0" href="#">Resource Title</span>
+                                      <a class="page-url text-primary" href="#">resource url</a>
+                                      <p class="page-description mt-1 w-75 text-muted">Resource description</p>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 results">
+                                      <div class="pt-4 border-bottom">
+                                        <span class="d-block h4 mb-0" href="#">Resource Title</span>
+                                        <a class="page-url text-primary" href="#">resource url</a>
+                                        <p class="page-description mt-1 w-75 text-muted">Resource description</p>
+                                      </div>
+                                    </div>
+                                    
+                            </div>
+            
                           </div>
                         </div>
-                        <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam volutpat quam est, non mollis massa commodo quis. Nullam pharetra, metus sit amet dictum molestie, ipsum ante consectetur nulla, quis fermentum tellus nulla tristique erat. Phasellus cursus mauris at erat efficitur, quis molestie mauris iaculis. Curabitur et malesuada massa. Aliquam quis pretium ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis consequat dui. Duis risus purus, egestas vel aliquet ac, porta fringilla nibh. Nam ut nibh vehicula dui rutrum interdum. Duis tincidunt suscipit lectus ut fringilla. Donec non nisi vel orci molestie luctus quis venenatis justo. Suspendisse fermentum, orci in efficitur rhoncus, turpis eros imperdiet magna, in tempus lectus urna id dolor. Morbi commodo suscipit leo in fringilla.</p>
+                      </div> 
                       </div>
-
-                    </div>
+                      <div class="col-lg-12">
+                        <div class="card">
+                        <div class="card-body">
+                          <h4 class="card-title d-block h4 mb-0">Deliverables</h4>
+                      
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-inline-block pt-3">
+                              <div class="d-flex">
+                                <div class="d-flex align-items-center ml-2">
+                                  <i class="mdi mdi-clock text-muted"></i>
+                                  <small class=" ml-1 mb-0">Updated: 9:10am</small>
+                                </div>
+                              </div>
+                              <div class="col-12 results">
+                                  <div class="pt-4 border-bottom">
+                                    <span class="d-block h4 mb-0" href="#">Deliverable title</span>
+                                    <a class="page-url text-primary" href="#">Deiverable url</a>
+                                    <p class="page-description mt-1 w-75 text-muted">Description</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 results">
+                                  <div class="pt-4 border-bottom">
+                                    <span class="d-block h4 mb-0" href="#">Deliverable title</span>
+                                    <a class="page-url text-primary" href="#">Deiverable url</a>
+                                    <p class="page-description mt-1 w-75 text-muted">Description</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 results">
+                                  <div class="pt-4 border-bottom">
+                                    <span class="d-block h4 mb-0" href="#">Deliverable title</span>
+                                    <a class="page-url text-primary" href="#">Deiverable url</a>
+                                    <p class="page-description mt-1 w-75 text-muted">Description</p>
+                                  </div>
+                                </div>
+          
+                                    
+                            </div>
+            
+                          </div>
+                        </div>
+                      </div> 
+                      </div>
+                        
+                      </div>
+            </div>
+            <div class="tab-pane fade" id="submission" role="tabpanel" aria-labelledby="submission-tab">
+              <div class = "row">
+                <div class="col-lg-12">
+                  <div class="card">
+                      <div class="card-body">
+                          <h4 class="card-title d-block h4 mb-0">Deliverables Submissions</h4>
+                      </div>
+              
                   </div>
+
+                  
                 </div>
               </div>
-              
-            
+              <div class = "row">
+                  <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-0">Deliverable 1</h4>
+                        </div>
+                        <table class="table table-hover">
+                  
+                              <tr>
+                                <td>Submission Status</td>
+                                <td>Photoshop</td>
+                              
+                              </tr>
+                              <tr>
+                                <td>Grading Status</td>
+                                <td>Flash</td>
+                                
+                              </tr>
+                              <tr>
+                                <td>Due Date</td>
+                                <td>Premier</td>
+                                
+                              </tr>
+                              <tr>
+                                <td>Time Left</td>
+                                <td>After effects</td>
+                               
+                              </tr>
+                              <tr>
+                                <td>Last Modified</td>
+                                <td>53275535</td>
+                               
+                              </tr>
+
+                            
+                          </table>
+                          <input type="file" class="dropify" />
+                          <button type="button" class="btn btn-success btn-fw">Save Changes</button>
+                          <button type="button" class="btn btn-secondary btn-fw">Cancel</button>
+                
+                    </div>
+                    
+                    
+                  </div>
+                  <div class="col-lg-6">
+                      <div class="card">
+                          <div class="card-body">
+                              <h4 class="card-title  mb-0">Deliverable 2 </h4>
+                          </div>
+                          <table class="table table-hover">
+                  
+                              <tr>
+                                <td>Submission Status</td>
+                                <td>Photoshop</td>
+                              
+                              </tr>
+                              <tr>
+                                <td>Grading Status</td>
+                                <td>Flash</td>
+                                
+                              </tr>
+                              <tr>
+                                <td>Due Date</td>
+                                <td>Premier</td>
+                                
+                              </tr>
+                              <tr>
+                                <td>Time Left</td>
+                                <td>After effects</td>
+                               
+                              </tr>
+                              <tr>
+                                <td>Last Modified</td>
+                                <td>53275535</td>
+                               
+                              </tr>
+
+                            
+                          </table>
+                          <input type="file" class="dropify" />
+                          <button type="button" class="btn btn-success btn-fw">Save Changes</button>
+                          <button type="button" class="btn btn-secondary btn-fw">Cancel</button>
+                  
+                      </div>
+                      
+                      
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class="col-lg-6">
+                      <div class="card">
+                          <div class="card-body">
+                              <h4 class="card-title mb-0">Deliverable 3</h4>
+                          </div>
+                          <table class="table table-hover">
+                  
+                              <tr>
+                                <td>Submission Status</td>
+                                <td>Photoshop</td>
+                              
+                              </tr>
+                              <tr>
+                                <td>Grading Status</td>
+                                <td>Flash</td>
+                                
+                              </tr>
+                              <tr>
+                                <td>Due Date</td>
+                                <td>Premier</td>
+                                
+                              </tr>
+                              <tr>
+                                <td>Time Left</td>
+                                <td>After effects</td>
+                               
+                              </tr>
+                              <tr>
+                                <td>Last Modified</td>
+                                <td>53275535</td>
+                               
+                              </tr>
+
+                            
+                          </table>
+                          <input type="file" class="dropify" />
+                          <button type="button" class="btn btn-success btn-fw">Save Changes</button>
+                          <button type="button" class="btn btn-secondary btn-fw">Cancel</button>
+                  
+                      </div>
+                      
+                      
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-0">Deliverable 4</h4>
+                            </div>
+                            <table class="table table-hover">
+                  
+                                <tr>
+                                  <td>Submission Status</td>
+                                  <td>Photoshop</td>
+                                
+                                </tr>
+                                <tr>
+                                  <td>Grading Status</td>
+                                  <td>Flash</td>
+                                  
+                                </tr>
+                                <tr>
+                                  <td>Due Date</td>
+                                  <td>Premier</td>
+                                  
+                                </tr>
+                                <tr>
+                                  <td>Time Left</td>
+                                  <td>After effects</td>
+                                 
+                                </tr>
+                                <tr>
+                                  <td>Last Modified</td>
+                                  <td>53275535</td>
+                                 
+                                </tr>
+  
+                              
+                            </table>
+                            <input type="file" class="dropify" />
+                            <button type="button" class="btn btn-success btn-fw">Save Changes</button>
+                            <button type="button" class="btn btn-secondary btn-fw">Cancel</button>
+                    
+                        </div>
+
+                        
+                        
+                      </div>
+                  </div>
+            </div>
+
+          </div>
+  
+
+
         </div>
+
+
+         </div>  
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
@@ -274,6 +565,7 @@
   <script src="node_modules/flot/jquery.flot.js"></script>
   <script src="node_modules/flot/jquery.flot.resize.js"></script>
   <script src="node_modules/flot.curvedlines/curvedLines.js"></script>
+  <script src="node_modules/dropify/dist/js/dropify.min.js"></script>
   <!-- End plugin js for this page-->
   <!-- inject:js -->
   <script src="js/off-canvas.js"></script>
@@ -281,6 +573,7 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="js/dashboard.js"></script>
+  <script src="js/dropify.js"></script>
   <!-- End custom js for this page-->
 </body>
 
