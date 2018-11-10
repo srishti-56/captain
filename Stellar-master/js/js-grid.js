@@ -18,47 +18,39 @@
               deleteConfirm: "Do you really want to delete the client?",
               data: db.clients,
               fields: [{
-                      name: "Name",
+                      name: "USN",
                       type: "text",
-                      width: 150
+                      width: 100
                   },
                     {
-                        name: "Age",
-                        type: "number",
-                        width: 50
-                    },
-                    {
-                        name: "Address",
+                        name: "Name",
                         type: "text",
-                        width: 200
+                        width: 100
                     },
                     {
-                        name: "Country",
+                        name: "Section",
                         type: "select",
-                        items: db.countries,
+                        items: db.semester,
                         valueField: "Id",
-                        textField: "Name"
+                        textField: "Name",
+                        width: 50
+
                     },
-                  {
-                    name: "Married",
-                    title: "Is Married",
-                    itemTemplate: function(value, item) {
-                      return $("<div>")
-                      .addClass("form-check mt-0")
-                        .append(
-                          $("<label>").addClass("form-check-label")
-                          .append(
-                            $("<input>").attr("type","checkbox")
-                            .addClass("form-check-input")
-                            .attr("checked", value || item.Checked)
-                            .on("change", function() {
-                               item.Checked = $(this).is(":checked");
-                            })
-                          )
-                          .append('<i class="input-helper"></i>')
-                        );
-                    }
-                  },
+                    {
+                        name: "Section",
+                        type: "select",
+                        items: db.section,
+                        valueField: "Id",
+                        textField: "Name",
+                        width: 50
+
+                    },
+                    {
+                        name:"Email",
+                        type:"text",
+                        width:100
+                    },
+
                   {
                       type: "control"
                   }

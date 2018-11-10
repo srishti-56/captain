@@ -29,17 +29,29 @@
     window.db = db;
 
 
-    db.countries = [
+    db.semester = [
         { Name: "", Id: 0 },
-        { Name: "United States", Id: 1 },
-        { Name: "Canada", Id: 2 },
-        { Name: "United Kingdom", Id: 3 },
-        { Name: "France", Id: 4 },
-        { Name: "Brazil", Id: 5 },
-        { Name: "China", Id: 6 },
-        { Name: "Russia", Id: 7 }
+        { Name: "1", Id: 1 },
+        { Name: "2", Id: 2 },
+        { Name: "3", Id: 3 },
+        { Name: "4", Id: 4 },
+        { Name: "5", Id: 5 },
+        { Name: "6", Id: 6 },
+        { Name: "7", Id: 7 },
+        { Name: "8", Id: 8 },
     ];
+    db.section = [
+        { Name: "", Id: 0 },
+        { Name: "A", Id: 1 },
+        { Name: "B", Id: 2 },
+        { Name: "C", Id: 3 },
+        { Name: "D", Id: 4 },
+        { Name: "E", Id: 5 },
+        { Name: "F", Id: 6 },
+        { Name: "G", Id: 7 },
+        { Name: "H", Id: 8 }
 
+    ];
     db.clients = [
         {
             "Name": "Otto Clay",

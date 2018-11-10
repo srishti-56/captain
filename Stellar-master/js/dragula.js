@@ -7,6 +7,15 @@
           return source === document.getElementById("profile-list-all1")
         },
         removeOnSpill: true,
+         verify: function(el,target)
+         {
+           if(global > 0)
+           {
+            return removeOnSpill = false
+          }
+
+         }, 
+       
         accepts: function (el, target) {
           return target !== document.getElementById("profile-list-all1")
         }
