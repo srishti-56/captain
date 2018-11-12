@@ -28,7 +28,7 @@
                         width: 100
                     },
                     {
-                        name: "Section",
+                        name: "Semester",
                         type: "select",
                         items: db.semester,
                         valueField: "Id",

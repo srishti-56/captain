@@ -1,7 +1,8 @@
 var obj={
     xhr:new XMLHttpRequest(),
     get:function(event){
-        
+        var div = document.getElementById('data')
+        div.innerHTML = "Hi"
         this.xhr.onreadystatechange=this.update;
         this.xhr.open("GET",url,true);
         this.xhr.send();
