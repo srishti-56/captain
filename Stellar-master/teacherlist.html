@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="node_modules/jsgrid/dist/jsgrid.min.css" />
   <link rel="stylesheet" href="node_modules/jsgrid/dist/jsgrid-theme.min.css" />
   <link rel="stylesheet" href="node_modules/quill/dist/quill.snow.css">
+  <link rel="stylesheet" href="node_modules/dropify/dist/css/dropify.min.css">
   
   <!-- End plugin css for this page -->
   <!-- inject:css -->
@@ -203,7 +204,7 @@
                         <div class="col-lg-12">
                           <div class="card">
                             <div class="card-body">
-                              <h4 class = "mb-0 h4 ">Manage Students</h4>
+                              <h4 class = "mb-0 h4 ">Manage Teachers</h4>
                             </div>
                           </div>
                         </div>
@@ -216,6 +217,16 @@
                                   <h4 class="card-title">Basic Table</h4>
                                   <p class="card-description">A basic example of js-grid</p>
                                   <div id="js-grid"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 grid-margin stretch-card">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h4 class="card-title">Your so fresh input file — Default version</h4>
+                                  <input type="file" class="dropify" />
                                 </div>
                               </div>
                             </div>
@@ -245,6 +256,7 @@
   <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+  
   <!-- endinject -->
   <!-- Plugin js for this page-->
   <script src="node_modules/dragula/dist/dragula.min.js"></script>
@@ -254,6 +266,8 @@
   <script src="node_modules/chart.js/dist/Chart.min.js"></script>
   <script src="node_modules/quill/dist/quill.min.js"></script>
   <script src="node_modules/jsgrid/dist/jsgrid.min.js"></script>
+  <script src="node_modules/dropify/dist/js/dropify.min.js"></script>
+
   <!-- End plugin js for this page-->
   <!-- inject:js -->
   <script src="js/off-canvas.js"></script>
@@ -262,8 +276,9 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
 
-  <script src="js/js-grid.js"></script>
-  <script src="js/db.js"></script>
+  <script src="js/teachergrid.js"></script>
+  <script src="js/teacherdb.js"></script>
+  <script src="js/dropify.js"></script>
  
   <!-- End custom js for this page-->
 </body>
