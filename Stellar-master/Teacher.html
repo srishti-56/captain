@@ -252,7 +252,7 @@
                   <div class="card-body">
                       <h4 class="card-title">My Sections</h4>
                     <div class="row">
-                      <div class="col d-flex flex-row justify-content-center align-items-center">
+                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
                         <div class="wrapper icon-circle bg-success">
                           <i class="icon-rocket icons"></i>
                         </div>
@@ -260,7 +260,7 @@
                           <p  class="text-dark">Sec A</p>
                         </div>
                       </div>
-                      <div class="col d-flex flex-row justify-content-center align-items-center">
+                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
                         <div class="wrapper icon-circle bg-danger">
                           <i class="icon-rocket icons"></i>
                         </div>
@@ -269,7 +269,7 @@
                         </div>
                       </div> 
   
-                      <div class="col d-flex flex-row justify-content-center align-items-center">
+                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
                         <div class="wrapper icon-circle bg-warning">
                           <i class="icon-rocket icons"></i>
                         </div>
@@ -283,145 +283,17 @@
                 </div>
               </div>
           </div>
+
+<div class="row">
+	<div class="col-lg-12 grid-margin">
+		<iframe  height="720px" width="1280px" style="display:none;" id="frame_sec" src="">
+		</iframe>
+
+		
+	</div>
+</div>
           <!-- ROW ENDS -->
            
-          <div class="row">
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">Todo list</h4>
-									<div class="add-items d-flex">
-										<input type="text" class="form-control todo-list-input"  placeholder="What do you need to do today?">
-										<button class="add btn btn-primary font-weight-bold todo-list-add-btn" id="add-task">Add</button>
-									</div>
-									<div class="list-wrapper">
-										<ul class="d-flex flex-column-reverse todo-list">
-											<li>
-												<div class="form-check">
-													<label class="form-check-label">
-														<input class="checkbox" type="checkbox">
-														Give Sec A new assignment
-													</label>
-												</div>
-												<i class="remove mdi mdi-close-circle-outline"></i>
-											</li>
-											<li class="completed">
-												<div class="form-check">
-													<label class="form-check-label">
-														<input class="checkbox" type="checkbox" checked>
-														Evaluate Project ideas
-													</label>
-												</div>
-												<i class="remove mdi mdi-close-circle-outline"></i>
-											</li>
-											<li>
-												<div class="form-check">
-													<label class="form-check-label">
-														<input class="checkbox" type="checkbox">
-														Meet Team 1,2,3 Sec B
-													</label>
-												</div>
-												<i class="remove mdi mdi-close-circle-outline"></i>
-											</li>
-											<li>
-												<div class="form-check">
-													<label class="form-check-label">
-														<input class="checkbox" type="checkbox">
-														Edit Assignment 2
-													</label>
-												</div>
-												<i class="remove mdi mdi-close-circle-outline"></i>
-											</li>
-											<li class="completed">
-												<div class="form-check">
-													<label class="form-check-label">
-														<input class="checkbox" type="checkbox" checked>
-														Prepare for presentation
-													</label>
-												</div>
-												<i class="remove mdi mdi-close-circle-outline"></i>
-											</li>
-											
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-
-               <!-- content-wrapper ends -->
-
-		<div class="col-md-6 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">Messages</h4>
-									<div class="preview-list">
-										<div class="preview-item border-bottom px-0">
-											<div class="preview-thumbnail">
-												<img src="images/faces/face6.jpg" alt="image" class="rounded-circle"/>
-											</div>
-											<div class="preview-item-content d-flex flex-grow">
-												<div class="flex-grow">
-													<h6 class="preview-subject">Richard Joy
-														<span class="float-right small">
-															<span class="text-muted pr-3">13.06.2017</span>
-														</span>
-													</h6>
-													<p>Thanks for the support!</p>
-												</div>
-											</div>
-										</div>
-										<div class="preview-item border-bottom px-0">
-											<div class="preview-thumbnail">
-												<img src="images/faces/face8.jpg" alt="image" class="rounded-circle"/>
-											</div>
-											<div class="preview-item-content d-flex flex-grow">
-												<div class="flex-grow">
-													<h6 class="preview-subject">William Alex
-														<span class="float-right small">
-															<span class="text-muted pr-3">08.07.2017</span>
-														</span>
-													</h6>
-													<p>Meeting is postponed</p>
-												</div>
-											</div>
-										</div>
-										<div class="preview-item border-bottom px-0">
-											<div class="preview-thumbnail">
-												<img src="images/faces/face9.jpg" alt="image" class="rounded-circle"/>
-											</div>
-											<div class="preview-item-content d-flex flex-grow">
-												<div class="flex-grow">
-													<h6 class="preview-subject">David Grey
-														<span class="float-right small">
-															<span class="text-muted pr-3">15.07.2017</span>
-														</span>
-													</h6>
-													<p>Please approve the request</p>
-												</div>
-											</div>
-										</div>
-										<div class="preview-item border-bottom px-0">
-											<div class="preview-thumbnail">
-												<img src="images/faces/face11.jpg" alt="image" class="rounded-circle"/>
-											</div>
-											<div class="preview-item-content d-flex flex-grow">
-												<div class="flex-grow">
-													<h6 class="preview-subject">Aleena Abraham
-														<span class="float-right small">
-															<span class="text-muted pr-3">12.06.2017</span>
-														</span>
-													</h6>
-													<p>Hope to see you tomorrow</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-  		</div> <!--ROW div for todo and messages-->
           
           <!-- ROW ENDS -->
           <div class="col-lg-12 grid-margin stretch-card">
@@ -433,10 +305,10 @@
                   <thead>
                     <tr>
                       <th>
-                        User
+                        Team
                       </th>
                       <th>
-                        First name
+                        Team name
                       </th>
                       <th>
                         Section
@@ -451,9 +323,11 @@
                     <tr>
                       <td class="py-1">
                         <img src="images/faces-clipart/pic-1.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
                       </td>
                       <td>
-                        Herman Beck
+                        Team 11
                       </td>
                       <td>
                        <label class="badge badge-success">Sec F</label>
@@ -466,9 +340,11 @@
                     <tr>
                       <td class="py-1">
                         <img src="images/faces-clipart/pic-2.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
                       </td>
                       <td>
-                        Messsy Adam
+                        Team 3
                       </td>
                       <td>
                         <label class="badge badge-success">Sec F</label>
@@ -481,9 +357,11 @@
                     <tr>
                       <td class="py-1">
                         <img src="images/faces-clipart/pic-3.png" alt="image"/>
+			<img src="images/faces-clipart/pic-3.png" alt="image"/>
+			<img src="images/faces-clipart/pic-3.png" alt="image"/>
                       </td>
                       <td>
-                        John Richards
+                        Team 12
                       </td>
                       <td>
                         <label class="badge badge-warning">Sec B</label>
@@ -496,9 +374,11 @@
                     <tr>
                       <td class="py-1">
                         <img src="images/faces-clipart/pic-4.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
                       </td>
                       <td>
-                        Peter Meggik
+                        Team 10
                       </td>
                       <td>
                         <label class="badge badge-danger">Sec A</label>
@@ -511,9 +391,11 @@
                     <tr>
                       <td class="py-1">
                         <img src="images/faces-clipart/pic-1.png" alt="image"/>
+			<img src="images/faces-clipart/pic-1.png" alt="image"/>
+			<img src="images/faces-clipart/pic-1.png" alt="image"/>
                       </td>
                       <td>
-                        Edward
+                        Team 1
                       </td>
                       <td>
                         <label class="badge badge-success">Sec F</label>
@@ -523,36 +405,7 @@
                       </td>
                       
                     </tr>
-                    <tr>
-                      <td class="py-1">
-                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
-                      </td>
-                      <td>
-                        John Doe
-                      </td>
-                      <td>
-                        <label class="badge badge-warning">Sec B</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-warning">Subject2</label>
-                      </td>
-                     
-                    </tr>
-                    <tr>
-                      <td class="py-1">
-                        <img src="images/faces-clipart/pic-3.png" alt="image"/>
-                      </td>
-                      <td>
-                        Henry Tom
-                      </td>
-                      <td>
-                       <label class="badge badge-success">Sec F</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-success">Subject1</label>
-                      </td>
                     
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -599,10 +452,22 @@
   <!-- End custom js for this page-->
 
 <script>
+
 function fillframe(e)
 {
 	var f =document.getElementById("frame");
+	if(f.style.display=='block')
+	{	f.style.display='none';return;}
 	f.src="course_min.html";
+	f.style.display='block';
+}
+
+function fillframe_sec(e)
+{
+	var f =document.getElementById("frame_sec");
+	if(f.style.display=='block')
+	{	f.style.display='none';return;}
+	f.src="submission_min.html";
 	f.style.display='block';
 }
 
