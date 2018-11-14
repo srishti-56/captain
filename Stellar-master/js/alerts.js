@@ -1,3 +1,4 @@
+var global = -1;
 (function($) {
   showSwal = function(type,iden){
         'use strict';
@@ -66,7 +67,7 @@
 
             })
             $(iden).remove();
-           
+            
 
 
     	}

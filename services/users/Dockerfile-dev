@@ -26,8 +26,4 @@ RUN dos2unix /usr/src/app/entrypoint.sh
 COPY . /usr/src/app
 
 # run server
-<<<<<<< HEAD
-CMD ["sh","/usr/src/app/entrypoint.sh"]	
-=======
 CMD ["sh", "/usr/src/app/entrypoint.sh"]	
->>>>>>> 58cc62a4f14e7c1ca701812c77fac35d2e64278f

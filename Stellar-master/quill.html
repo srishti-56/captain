@@ -1,0 +1,45 @@
+<!-- Include Quill stylesheet -->
+<link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+
+
+<h3 style="margin:15px;">Enter Feedback</h3>
+
+<div id="feedbackformcontainer" style="margin:30px;height:20vh;width=60vh;display:block-inline;">
+<!-- Create the toolbar container -->
+<div id="toolbar">
+  <button class="ql-bold">Bold</button>
+  <button class="ql-italic">Italic</button>
+  <button class="ql-underline"> Underlined </button>
+</div>
+
+<!-- Create the editor container -->
+<div id="editor">
+
+</div>
+
+<button type="submit" onclick="submit()" style="margin:20px">Submit Feedback</button>
+
+</div>
+</br>
+<div id="output" style="height:200px;width:200px;display:none;margin:1px;border:1px">Feedback we got from you</div>
+
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+<script>
+  var editor = new Quill('#editor', {
+    modules: { toolbar: '#toolbar' },
+    theme: 'snow'
+  });
+
+function submit()
+{
+var myEditor = document.querySelector('#editor');
+var html = myEditor.children[0].innerHTML;
+var out=document.getElementById('output');
+out.innerHTML=html;
+out.style.display="block";
+}
+
+</script>
