@@ -1,2 +1,2 @@
-CREATE DATABASE student;
+CREATE DATABASE users;
 

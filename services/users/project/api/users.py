@@ -4,12 +4,13 @@ import simplejson as json
 
 from flask import Blueprint, jsonify, request, render_template
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
+
 from flask import redirect, url_for, session
 
 from requests_oauthlib import OAuth2Session
 from requests.exceptions import HTTPError
 
-from project.api.models import Student
+from project.api.models import Student, Teacher, User
 from sqlalchemy import exc
 from project import create_app, db
 from project import login_manager
@@ -87,9 +88,16 @@ This function
 @users_blueprint.route('/login')
 def login():
     print("in login")
+    print(current_user)
     if current_user.is_authenticated:
-        print("is authenticated!")
-        return redirect(url_for('index'))
+        print(current_user.name," ", current_user.email, "is authenticated!")
+        response_object = {
+        'status': 'success',
+        'message': 'Already logged in.'
+        }
+        return jsonify(response_object)
+        #return redirect(url_for('users.index'))
+    #else
     print("get auth")
     google = get_google_auth()
     auth_url, state = google.authorization_url(
@@ -109,6 +117,12 @@ def profile():
     print("Display profile")
     return render_template('student_profile.html')
 
+@users_blueprint.route('/something')
+@login_required
+def somewhere():
+    print("Testing @loginrequired")
+    return jsonify()
+
 
 @users_blueprint.route('/gCallback')
 def callback():
@@ -116,7 +130,7 @@ def callback():
     print("in gcallback!")
     if current_user is not None and current_user.is_authenticated:
         print("is auth already")
-        return redirect(url_for('index'))
+        return redirect(url_for('users.index'))
     if 'error' in request.args:
         print("some error")
         if request.args.get('error') == 'access_denied':
@@ -136,6 +150,7 @@ def callback():
                 Auth.TOKEN_URI,
                 client_secret=Auth.CLIENT_SECRET,
                 authorization_response=request.url)
+            print(token)
         except HTTPError:
             return 'HTTPError occurred.'
         google = get_google_auth(token=token)
@@ -157,10 +172,12 @@ def callback():
                     return "Error creating new user, init requires 'usn', 'name', 'email', 'branch', 'semester', and 'section' data"                    
                     #return redirect(url_for('users.signup'))
             # try:
-            user.name = user_data['name']
+            # current_user.is_authenticated = True
+            current_user.name = user_data['name']
+            current_user.email = user_data['email']
+            # current_user.token = token
             print(token)
             user.tokens = json.dumps(token)
-            user.avatar = user_data['picture']
             db.session.add(user)
             db.session.commit()
             login_user(user)
@@ -170,3 +187,15 @@ def callback():
             
             return redirect(url_for('users.profile'))
         return 'Could not fetch your information.'
+
+@users_blueprint.route("/logout", methods=["GET"])
+@login_required
+def logout():
+    """Logout the current user."""
+    user = current_user
+    user.authenticated = False
+    db.session.add(user)
+    db.session.commit()
+    logout_user()
+    return redirect(url_for('users.index'))
+
