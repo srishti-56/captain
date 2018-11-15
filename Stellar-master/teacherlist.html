@@ -15,17 +15,20 @@
   <!-- endinject -->
   <!-- plugin css for this page -->
   <link rel="stylesheet" href="node_modules/dragula/dist/dragula.min.css" />
-  <link rel="stylesheet" type="text/css" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+
   <link rel="stylesheet" href="node_modules/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
   <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" href="node_modules/jsgrid/dist/jsgrid.min.css" />
   <link rel="stylesheet" href="node_modules/jsgrid/dist/jsgrid-theme.min.css" />
   <link rel="stylesheet" href="node_modules/quill/dist/quill.snow.css">
   <link rel="stylesheet" href="node_modules/dropify/dist/css/dropify.min.css">
+  <link rel="stylesheet" href="css/table.css">
+ 
   
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
+
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
 </head>
@@ -214,24 +217,64 @@
                             <div class="col-12">
                               <div class="card">
                                 <div class="card-body">
-                                  <h4 class="card-title">Basic Table</h4>
-                                  <p class="card-description">A basic example of js-grid</p>
-                                  <div id="js-grid"></div>
+                                  <div id="table" class="table-editable">
+                                   
+                                    <i class="icon-plus table-add "></i>                                   
+                                    <table class="table">
+                                      <tr>
+                                        <th>F_ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Branch</th>
+                                        <th>Position</th>
+                                        <th></th>
+                                        <th></th>
+                                      </tr>
+
+                                      <!-- This is our clonable table line -->
+                                      <tr class="hide">
+                                        <td contenteditable="true">&nbsp;</td>
+                                        <td contenteditable="true">&nbsp;</td>
+                                        <td contenteditable="true">&nbsp;</td>
+                                        <td contenteditable="true" >&nbsp;</td>
+                                        <td contenteditable="true"><select name="D1">
+                                          <option value="">&nbsp;</option>
+                                          <option value="Assistant Professor">Assistant Professor</option>
+                                          <option value="Professor">Professor</option>
+
+                                          </select></td>
+
+                                        <td>
+                                          <i class="icon-trash table-remove"></i>
+                                        </td>
+                                        <td>
+                                          <i class="icon-arrow-up table-up"></i>
+                                          <i class="icon-arrow-down table-down"></i>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                  
+                                  <button id="export-btn" class="btn btn-primary">Export Data</button>
+                                  <p id="export"></p>
+                                </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          
                           <div class="row">
                             <div class="col-lg-12 grid-margin stretch-card">
                               <div class="card">
                                 <div class="card-body">
-                                  <h4 class="card-title">Your so fresh input file — Default version</h4>
+                                  <h4 class="card-title">Upload an excel sheet containing the details</h4>
                                   <input type="file" class="dropify" />
+                                  <p>&nbsp;</p>
+                                  <button type="submit" class="btn btn-success btn-fw">Add to the database</button>
                                 </div>
                               </div>
                             </div>
                           </div>
-                      <button type="submit" class="btn btn-success btn-fw">Add to the database</button>
+                     
 
         </div>  
 
@@ -261,11 +304,6 @@
   <!-- Plugin js for this page-->
   <script src="node_modules/dragula/dist/dragula.min.js"></script>
   <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="node_modules/jquery.avgrund/jquery.avgrund.min.js"></script>
-  <script src="node_modules/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-  <script src="node_modules/chart.js/dist/Chart.min.js"></script>
-  <script src="node_modules/quill/dist/quill.min.js"></script>
-  <script src="node_modules/jsgrid/dist/jsgrid.min.js"></script>
   <script src="node_modules/dropify/dist/js/dropify.min.js"></script>
 
   <!-- End plugin js for this page-->
@@ -279,6 +317,9 @@
   <script src="js/teachergrid.js"></script>
   <script src="js/teacherdb.js"></script>
   <script src="js/dropify.js"></script>
+  <script src="js/etable.js"></script>
+ 
+
  
   <!-- End custom js for this page-->
 </body>
