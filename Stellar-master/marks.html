@@ -17,6 +17,7 @@
   <!-- plugin css for this page -->
   <link rel="stylesheet" href="node_modules/chartist/dist/chartist.min.css" />
   <link rel="stylesheet" href="node_modules/jvectormap/jquery-jvectormap.css" />
+  <link rel="stylesheet" href="../../node_modules/jquery-bar-rating/dist/themes/bars-1to10.css">
   <link rel="stylesheet" href="../../node_modules/fullcalendar/dist/fullcalendar.min.css" />
   <!-- End plugin css for this page -->
   <!-- inject:css -->
@@ -198,16 +199,6 @@
               </a>
             </li>
             </li>
-	<li class="nav-item nav-category">
-              <span class="nav-link">STUDENTS</span>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="marks.html">
-                <span class="menu-title">Mark Students</span>
-                <i class="icon-notebook menu-icon"></i>
-              </a>
-            </li>
           </ul>
         </nav>
         <!-- partial -->
@@ -215,93 +206,7 @@
 
 
           <!-- ROW ENDS -->
-          <div class="row">
-            <div class="col-lg-12 grid-margin">
-              <div class="card performance-cards">
-                <div class="card-body">
-                    <h4 class="card-title">My Courses</h4>
-                  <div class="row">
-                    <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe(this);">
-                      <div class="wrapper icon-circle bg-success">
-                        <i class="icon-chart icons"></i>
-                      </div>
-                      <div class="wrapper text-wrapper">
-                        <p class="text-dark">Lab Course 1</p>
-			<p> Sec A,Sec F</p>
-                        
-                      </div>
-                    </div>
-                    <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe(this);">
-                      <div class="wrapper icon-circle bg-danger">
-                        <i class="icon-chart icons"></i>
-                      </div>
-                      <div class="wrapper text-wrapper">
-                        <p class="text-dark">Lab Course 2</p>
-			<p>Sec B</p>
-                        
-                      </div>
-                    </div> 
-
-                    
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-<div class="row">
-	<div class="col-lg-12 grid-margin">
-		<iframe  height="720px" width="1280px" style="display:none;" id="frame" src="">
-		</iframe>
-
-		
-	</div>
-</div>
-            <div class="col-lg-12 grid-margin">
-                <div class="card performance-cards">
-                  <div class="card-body">
-                      <h4 class="card-title">My Sections</h4>
-                    <div class="row">
-                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
-                        <div class="wrapper icon-circle bg-success">
-                          <i class="icon-rocket icons"></i>
-                        </div>
-                        <div class="wrapper text-wrapper">
-                          <p  class="text-dark">Sec A</p>
-                        </div>
-                      </div>
-                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
-                        <div class="wrapper icon-circle bg-danger">
-                          <i class="icon-rocket icons"></i>
-                        </div>
-                        <div class="wrapper text-wrapper">
-                          <p  class="text-dark">Sec B</p>
-                        </div>
-                      </div> 
-  
-                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
-                        <div class="wrapper icon-circle bg-warning">
-                          <i class="icon-rocket icons"></i>
-                        </div>
-                        <div class="wrapper text-wrapper">
-                          <p  class="text-dark">Sec F</p>
-                        </div>
-                      </div>
-  
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-
-<div class="row">
-	<div class="col-lg-12 grid-margin">
-		<iframe  height="720px" width="1280px" style="display:none;" id="frame_sec" src="">
-		</iframe>
-
-		
-	</div>
-</div>
+         
           <!-- ROW ENDS -->
            
           
@@ -309,16 +214,16 @@
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Recent Submissions</h4>
+                <h4 class="card-title">All Students</h4>
 
                 <table class="table table-striped">
                   <thead>
                     <tr>
                       <th>
-                        Team
+                        USN
                       </th>
                       <th>
-                        Team name
+                        Name
                       </th>
                       <th>
                         Section
@@ -327,10 +232,7 @@
                         Subject
                       </th>
 			<th>
-                        View
-                      </th>
-			<th>
-                        Evaluate
+                        Score
                       </th>
                      
                     </tr>
@@ -338,118 +240,154 @@
                   <tbody>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
+                       	<h4>01FB15ECS309</h4>
                       </td>
                       <td>
-                        Team 11
+                        fsa  sad 
+                      </td>
+                       <td>
+                        <label class="badge badge-success">Sec F</label>
                       </td>
                       <td>
-                       <label class="badge badge-success">Sec F</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-success">Subject1</label>
+                        <label class="badge badge-danger">Subject2</label>
                       </td>
 			<td>
-			<button class="btn btn-info"  >View</button>
+			
+                    <select id="example-1to10" name="rating" autocomplete="off" >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5" selected="selected">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                 
 			</td>
-			<td>
-			<button class="btn btn-primary">Evaluate</button>
-			</td>	
                      
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
+                        <h4>01FB15ECS309</h4>
                       </td>
                       <td>
-                        Team 3
+                        Asfdafs Gsdaas
                       </td>
                       <td>
                         <label class="badge badge-success">Sec F</label>
                       </td>
                       <td>
-                        <label class="badge badge-warning">Subject2</label>
+                        <label class="badge badge-danger">Subject2</label>
                       </td>
-			<td>
-			<button class="btn btn-info"  >View</button>
+                     	<td>
+			
+                    <select id="example-1to10" name="rating" autocomplete="off" >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5" selected="selected">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                 
 			</td>
-			<td>
-			<button class="btn btn-primary">Evaluate</button>
-			</td>	
-                     
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-3.png" alt="image"/>
-			<img src="images/faces-clipart/pic-3.png" alt="image"/>
-			<img src="images/faces-clipart/pic-3.png" alt="image"/>
+                       <h4>01FB15ECS319</h4>
                       </td>
                       <td>
-                        Team 12
-                      </td>
-                      <td>
-                        <label class="badge badge-warning">Sec B</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-danger">Subject3</label>
-                      </td>
-			<td>
-			<button class="btn btn-info"  >View</button>
-			</td>
-			<td>
-			<button class="btn btn-primary">Evaluate</button>
-			</td>	
-                     
-                    </tr>
-                    <tr>
-                      <td class="py-1">
-                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
-                      </td>
-                      <td>
-                        Team 10
-                      </td>
-                      <td>
-                        <label class="badge badge-danger">Sec A</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-danger">Subject3</label>
-                      </td>
-			<td>
-			<button class="btn btn-info"  >View</button>
-			</td>
-			<td>
-			<button class="btn btn-primary">Evaluate</button>
-			</td>	
-                      
-                    </tr>
-                    <tr>
-                      <td class="py-1">
-                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
-			<img src="images/faces-clipart/pic-1.png" alt="image"/>
-			<img src="images/faces-clipart/pic-1.png" alt="image"/>
-                      </td>
-                      <td>
-                        Team 1
+                        Basd awsaw
                       </td>
                       <td>
                         <label class="badge badge-success">Sec F</label>
                       </td>
                       <td>
-                        <label class="badge badge-danger">Subject3</label>
+                        <label class="badge badge-danger">Subject2</label>
                       </td>
-			<td>
-			<button class="btn btn-info"  >View</button>
+                     	<td>
+			
+                    <select id="example-1to10" name="rating" autocomplete="off" >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5" selected="selected">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                 
 			</td>
-			<td>
-			<button class="btn btn-primary">Evaluate</button>
-			</td>	
-                      
+                    </tr>
+                    <tr>
+                      <td class="py-1">
+                        <h4>01FB15ECS3022</h4>
+                      </td>
+                      <td>
+                        Erasd faerda
+                      </td>
+                     <td>
+                        <label class="badge badge-success">Sec F</label>
+                      </td>
+                      <td>
+                        <label class="badge badge-danger">Subject2</label>
+                      </td>
+                      	<td>
+			
+                    <select id="example-1to10" name="rating" autocomplete="off" >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5" selected="selected">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                 
+			</td>
+                    </tr>
+                    <tr>
+                      <td class="py-1">
+                     <h4>01FB15ECS030</h4>
+                      </td>
+                      <td>
+                        Awrfas wetasd
+                      </td>
+                      <td>
+                        <label class="badge badge-success">Sec F</label>
+                      </td>
+                      <td>
+                        <label class="badge badge-danger">Subject2</label>
+                      </td>
+                      	<td>
+			
+                    <select id="example-1to10" name="rating" autocomplete="off" >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5" selected="selected">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                 
+			</td>
                     </tr>
                     
                   </tbody>
