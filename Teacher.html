@@ -1,0 +1,422 @@
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Stellar Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="node_modules/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="node_modules/flag-icon-css/css/flag-icon.min.css">
+  <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+
+
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="node_modules/chartist/dist/chartist.min.css" />
+  <link rel="stylesheet" href="node_modules/jvectormap/jquery-jvectormap.css" />
+  <link rel="stylesheet" href="../../node_modules/fullcalendar/dist/fullcalendar.min.css" />
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="images/favicon.png" />
+
+  <!-- functionality -->
+  <script type="text/javascript">
+    
+
+  </script>
+
+</head>
+<body>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper">
+          <i class="icon-anchor icons"></i>
+        <a class="navbar-brand brand-logo" href="teacher.html"><img src="images/logo.png" alt="logo"></a>
+        <a class="navbar-brand brand-logo-mini" href="teacher.html"><img src="images/logo_mini.svg" alt="logo"></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center">
+        <p class="page-name d-none d-lg-block">Hi, Dave Mattew</p>
+        <ul class="navbar-nav ml-lg-auto">
+		<button class="btn btn-info" onclick="alert_signout()">Sign Out</button>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center ml-auto" type="button" data-toggle="offcanvas">
+          <span class="icon-menu icons"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <div class="row row-offcanvas row-offcanvas-right">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item nav-category">
+              <span class="nav-link">GENERAL</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Teacher.html">
+                <span class="menu-title">Dashboard</span>
+                <i class="icon-speedometer menu-icon"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item nav-category">
+              <span class="nav-link">MY COURSES</span>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="course.html">
+                <span class="menu-title">Subject1</span>
+                <i class="icon-notebook menu-icon"></i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="course.html">
+                <span class="menu-title">Subject2</span>
+                <i class="icon-notebook menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="course.html">
+                <span class="menu-title">Subject3</span>
+                <i class="icon-notebook  menu-icon"></i>
+              </a>
+            </li>
+            </li>
+	<li class="nav-item nav-category">
+              <span class="nav-link">STUDENTS</span>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="marks.html">
+                <span class="menu-title">Mark Students</span>
+                <i class="icon-notebook menu-icon"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- partial -->
+        <div class="content-wrapper">
+
+
+          <!-- ROW ENDS -->
+          <div class="row">
+            <div class="col-lg-12 grid-margin">
+              <div class="card performance-cards">
+                <div class="card-body">
+                    <h4 class="card-title">My Courses</h4>
+                  <div class="row">
+                    <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe(this);">
+                      <div class="wrapper icon-circle bg-success">
+                        <i class="icon-chart icons"></i>
+                      </div>
+                      <div class="wrapper text-wrapper">
+                        <p class="text-dark">Lab Course 1</p>
+			<p> Sec A,Sec F</p>
+                        
+                      </div>
+                    </div>
+                    <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe(this);">
+                      <div class="wrapper icon-circle bg-danger">
+                        <i class="icon-chart icons"></i>
+                      </div>
+                      <div class="wrapper text-wrapper">
+                        <p class="text-dark">Lab Course 2</p>
+			<p>Sec B</p>
+                        
+                      </div>
+                    </div> 
+
+                    
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<div class="row">
+	<div class="col-lg-12 grid-margin">
+		<iframe  height="720px" width="1280px" style="display:none;" id="frame" src="">
+		</iframe>
+
+		
+	</div>
+</div>
+            <div class="col-lg-12 grid-margin">
+                <div class="card performance-cards">
+                  <div class="card-body">
+                      <h4 class="card-title">My Sections</h4>
+                    <div class="row">
+                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
+                        <div class="wrapper icon-circle bg-success">
+                          <i class="icon-rocket icons"></i>
+                        </div>
+                        <div class="wrapper text-wrapper">
+                          <p  class="text-dark">Sec A</p>
+                        </div>
+                      </div>
+                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
+                        <div class="wrapper icon-circle bg-danger">
+                          <i class="icon-rocket icons"></i>
+                        </div>
+                        <div class="wrapper text-wrapper">
+                          <p  class="text-dark">Sec B</p>
+                        </div>
+                      </div> 
+  
+                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
+                        <div class="wrapper icon-circle bg-warning">
+                          <i class="icon-rocket icons"></i>
+                        </div>
+                        <div class="wrapper text-wrapper">
+                          <p  class="text-dark">Sec F</p>
+                        </div>
+                      </div>
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+<div class="row">
+	<div class="col-lg-12 grid-margin">
+		<iframe  height="720px" width="1280px" style="display:none;" id="frame_sec" src="">
+		</iframe>
+
+		
+	</div>
+</div>
+          <!-- ROW ENDS -->
+           
+          
+          <!-- ROW ENDS -->
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Recent Submissions</h4>
+
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>
+                        Team
+                      </th>
+                      <th>
+                        Team name
+                      </th>
+                      <th>
+                        Section
+                      </th>
+                      <th>
+                        Subject
+                      </th>
+			<th>
+                        View
+                      </th>
+			<th>
+                        Evaluate
+                      </th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="py-1">
+                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
+                      </td>
+                      <td>
+                        Team 11
+                      </td>
+                      <td>
+                       <label class="badge badge-success">Sec F</label>
+                      </td>
+                      <td>
+                        <label class="badge badge-success">Subject1</label>
+                      </td>
+			<td>
+			<button class="btn btn-info"  >View</button>
+			</td>
+			<td>
+			<button class="btn btn-primary">Evaluate</button>
+			</td>	
+                     
+                    </tr>
+                    <tr>
+                      <td class="py-1">
+                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
+                      </td>
+                      <td>
+                        Team 3
+                      </td>
+                      <td>
+                        <label class="badge badge-success">Sec F</label>
+                      </td>
+                      <td>
+                        <label class="badge badge-warning">Subject2</label>
+                      </td>
+			<td>
+			<button class="btn btn-info"  >View</button>
+			</td>
+			<td>
+			<button class="btn btn-primary">Evaluate</button>
+			</td>	
+                     
+                    </tr>
+                    <tr>
+                      <td class="py-1">
+                        <img src="images/faces-clipart/pic-3.png" alt="image"/>
+			<img src="images/faces-clipart/pic-3.png" alt="image"/>
+			<img src="images/faces-clipart/pic-3.png" alt="image"/>
+                      </td>
+                      <td>
+                        Team 12
+                      </td>
+                      <td>
+                        <label class="badge badge-warning">Sec B</label>
+                      </td>
+                      <td>
+                        <label class="badge badge-danger">Subject3</label>
+                      </td>
+			<td>
+			<button class="btn btn-info"  >View</button>
+			</td>
+			<td>
+			<button class="btn btn-primary">Evaluate</button>
+			</td>	
+                     
+                    </tr>
+                    <tr>
+                      <td class="py-1">
+                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
+                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
+                      </td>
+                      <td>
+                        Team 10
+                      </td>
+                      <td>
+                        <label class="badge badge-danger">Sec A</label>
+                      </td>
+                      <td>
+                        <label class="badge badge-danger">Subject3</label>
+                      </td>
+			<td>
+			<button class="btn btn-info"  >View</button>
+			</td>
+			<td>
+			<button class="btn btn-primary">Evaluate</button>
+			</td>	
+                      
+                    </tr>
+                    <tr>
+                      <td class="py-1">
+                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
+			<img src="images/faces-clipart/pic-1.png" alt="image"/>
+			<img src="images/faces-clipart/pic-1.png" alt="image"/>
+                      </td>
+                      <td>
+                        Team 1
+                      </td>
+                      <td>
+                        <label class="badge badge-success">Sec F</label>
+                      </td>
+                      <td>
+                        <label class="badge badge-danger">Subject3</label>
+                      </td>
+			<td>
+			<button class="btn btn-info"  >View</button>
+			</td>
+			<td>
+			<button class="btn btn-primary">Evaluate</button>
+			</td>	
+                      
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+         
+                  
+          <!-- ROW ENDS -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- row-offcanvas ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="node_modules/flot/jquery.flot.js"></script>
+  <script src="node_modules/flot/jquery.flot.resize.js"></script>
+  <script src="node_modules/flot.curvedlines/curvedLines.js"></script>
+   <script src="../../node_modules/moment/moment.js"></script>
+  <script src="../../node_modules/fullcalendar/dist/fullcalendar.min.js"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="js/dashboard.js"></script>
+  <!-- End custom js for this page-->
+
+<script>
+
+function alert_signout()
+{
+confirm("Are you sure you want to sign out ?")
+}
+
+function fillframe(e)
+{
+	var f =document.getElementById("frame");
+	if(f.style.display=='block')
+	{	f.style.display='none';return;}
+	f.src="course_min.html";
+	f.style.display='block';
+}
+
+function fillframe_sec(e)
+{
+	var f =document.getElementById("frame_sec");
+	if(f.style.display=='block')
+	{	f.style.display='none';return;}
+	f.src="submission_min.html";
+	f.style.display='block';
+}
+
+
+</script>
+</body>
+
+</html>
